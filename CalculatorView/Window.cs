@@ -30,7 +30,7 @@ namespace CalculatorView
         {
             if(text != "")
             {
-                char sign = text[checkPosition];
+                char sign = text[text.Length - 1];
 
                 if (sign == '+' || sign == '-' || sign == '*' || sign == '/')
                 {
@@ -56,6 +56,7 @@ namespace CalculatorView
             }
             else
                 MessageBox.Show("Een getal kan geen 2 komma's bevatten");
+            LoseFocus();
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
@@ -168,6 +169,68 @@ namespace CalculatorView
             else
             {
                 MessageBox.Show("Er zijn geen haakjes om te sluiten");
+            }
+        }
+
+        private void KeyPressed(object sender, KeyPressEventArgs e)
+        {
+            char key = e.KeyChar;
+
+            switch (key)
+            {
+                case '0':
+                    Numeric_Button_Click(Button0, e);
+                    break;
+                case '1':
+                    Numeric_Button_Click(Button1, e);
+                    break;
+                case '2':
+                    Numeric_Button_Click(Button2, e);
+                    break;
+                case '3':
+                    Numeric_Button_Click(Button3, e);
+                    break;
+                case '4':
+                    Numeric_Button_Click(Button4, e);
+                    break;
+                case '5':
+                    Numeric_Button_Click(Button5, e);
+                    break;
+                case '6':
+                    Numeric_Button_Click(Button6, e);
+                    break;
+                case '7':
+                    Numeric_Button_Click(Button7, e);
+                    break;
+                case '8':
+                    Numeric_Button_Click(Button8, e);
+                    break;
+                case '9':
+                    Numeric_Button_Click(Button9, e);
+                    break;
+                case '.':
+                    ButtonDecimal_Click(ButtonDecimal, e);
+                    break;
+                case '(':
+                    ButtonLeftBracket_Click(ButtonLeftBracket, e);
+                    break;
+                case ')':
+                    ButtonRightBracket_Click(ButtonRightBracket, e);
+                    break;
+                case '+':
+                    ButtonAdd_Click(ButtonAdd, e);
+                    break;
+                case '-':
+                    ButtonSubtract_Click(ButtonSubtract, e);
+                    break;
+                case '*':
+                    ButtonMultiply_Click(ButtonMultiply, e);
+                    break;
+                case '/':
+                    ButtonDivide_Click(ButtonDivide, e);
+                    break;
+                default:
+                    break;
             }
         }
     }
