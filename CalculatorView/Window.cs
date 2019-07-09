@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Calculator;
 
 namespace CalculatorView
 {
@@ -17,7 +18,19 @@ namespace CalculatorView
             InitializeComponent();
         }
 
-        private static int _aantalHaakjes = 0;
+        private void Calculate()
+        {
+            TextboxFormule.Text += TextboxInput.Text;
+
+            Calculator.Calculator calc = new Calculator.Calculator();
+
+            string solution = calc.Main(TextboxFormule.Text);
+
+            TextboxFormule.Clear();
+            TextboxInput.Text = solution;
+        }
+
+        private int _aantalHaakjes = 0;
 
         private void LoseFocus()
         {
@@ -36,6 +49,10 @@ namespace CalculatorView
                 {
                     return true;
                 }
+                return false;
+            }
+            else if (TextboxFormule.Text.Length > 0 && TextboxFormule.Text[TextboxFormule.Text.Length - 1] == ')')
+            {
                 return false;
             }
 
@@ -134,6 +151,7 @@ namespace CalculatorView
         {
             if(TextboxInput.Text.Length > 0)
             TextboxInput.Text = TextboxInput.Text.Remove(TextboxInput.Text.Length - 1);
+            LoseFocus();
         }
 
         private void ButtonLeftBracket_Click(object sender, EventArgs e)
@@ -149,6 +167,7 @@ namespace CalculatorView
             {
                 MessageBox.Show("Je kan geen haakjes plaatsen op deze plaats");
             }
+            LoseFocus();
         }
 
         private void ButtonRightBracket_Click(object sender, EventArgs e)
@@ -170,6 +189,7 @@ namespace CalculatorView
             {
                 MessageBox.Show("Er zijn geen haakjes om te sluiten");
             }
+            LoseFocus();
         }
 
         private void KeyPressed(object sender, KeyPressEventArgs e)
@@ -228,6 +248,12 @@ namespace CalculatorView
                     break;
                 case '/':
                     ButtonDivide_Click(ButtonDivide, e);
+                    break;
+                case (char)8:
+                    ButtonBackspace_Click(ButtonBackspace, e);
+                    break;
+                case (char)13:
+                    Calculate();
                     break;
                 default:
                     break;
