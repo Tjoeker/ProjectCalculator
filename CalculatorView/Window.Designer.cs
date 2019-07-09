@@ -180,6 +180,7 @@
             this.ButtonClear.TabIndex = 4;
             this.ButtonClear.Text = "C";
             this.ButtonClear.UseVisualStyleBackColor = false;
+            this.ButtonClear.Click += new System.EventHandler(this.ButtonClear_Click);
             // 
             // ButtonPower
             // 
@@ -327,6 +328,7 @@
             this.ButtonDivide.TabIndex = 9;
             this.ButtonDivide.Text = "/";
             this.ButtonDivide.UseVisualStyleBackColor = false;
+            this.ButtonDivide.Click += new System.EventHandler(this.ButtonDivide_Click);
             // 
             // ButtonMultiply
             // 
@@ -341,6 +343,7 @@
             this.ButtonMultiply.TabIndex = 13;
             this.ButtonMultiply.Text = "x";
             this.ButtonMultiply.UseVisualStyleBackColor = false;
+            this.ButtonMultiply.Click += new System.EventHandler(this.ButtonMultiply_Click);
             // 
             // Button4
             // 

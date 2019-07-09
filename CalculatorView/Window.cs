@@ -87,6 +87,7 @@ namespace CalculatorView
         private void ButtonDecimal_Click(object sender, EventArgs e)
         {
             TextboxInput.Text += ".";
+            LoseFocus();
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
@@ -94,6 +95,7 @@ namespace CalculatorView
             TextboxFormule.Text += TextboxInput.Text;
             TextboxInput.Clear();
             TextboxInput.Text += "+";
+            LoseFocus();
         }
 
         private void ButtonSubtract_Click(object sender, EventArgs e)
@@ -108,6 +110,30 @@ namespace CalculatorView
                 TextboxInput.Clear();
                 TextboxInput.Text += "-";
             }
+            LoseFocus();
+        }
+
+        private void ButtonMultiply_Click(object sender, EventArgs e)
+        {
+            TextboxFormule.Text += TextboxInput.Text;
+            TextboxInput.Clear();
+            TextboxInput.Text += "*";
+            LoseFocus();
+        }
+
+        private void ButtonDivide_Click(object sender, EventArgs e)
+        {
+            TextboxFormule.Text += TextboxInput.Text;
+            TextboxInput.Clear();
+            TextboxInput.Text += "/";
+            LoseFocus();
+        }
+
+        private void ButtonClear_Click(object sender, EventArgs e)
+        {
+            TextboxInput.Clear();
+            TextboxFormule.Clear();
+            LoseFocus();
         }
     }
 }
