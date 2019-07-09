@@ -17,6 +17,8 @@ namespace CalculatorView
             InitializeComponent();
         }
 
+        private static int _aantalHaakjes = 0;
+
         private void LoseFocus()
         {
             TextboxInput.Focus();
@@ -24,109 +26,100 @@ namespace CalculatorView
             TextboxInput.SelectionLength = 0;
         }
 
-        private void Button0_Click(object sender, EventArgs e)
+        private bool CheckIfSign(string text, int checkPosition)
         {
-            TextboxInput.Text += 0;
-            LoseFocus();
-        }
+            if(text != "")
+            {
+                char sign = text[checkPosition];
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            TextboxInput.Text += 1;
-            LoseFocus();
-        }
+                if (sign == '+' || sign == '-' || sign == '*' || sign == '/')
+                {
+                    return true;
+                }
+                return false;
+            }
 
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            TextboxInput.Text += 2;
-            LoseFocus();
+            return true;
         }
-
-        private void Button3_Click(object sender, EventArgs e)
+        private void Numeric_Button_Click(object sender, EventArgs e)
         {
-            TextboxInput.Text += 3;
-            LoseFocus();
-        }
-
-        private void Button4_Click(object sender, EventArgs e)
-        {
-            TextboxInput.Text += 4;
-            LoseFocus();
-        }
-
-        private void Button5_Click(object sender, EventArgs e)
-        {
-            TextboxInput.Text += 5;
-            LoseFocus();
-        }
-
-        private void Button6_Click(object sender, EventArgs e)
-        {
-            TextboxInput.Text += 6;
-            LoseFocus();
-        }
-
-        private void Button7_Click(object sender, EventArgs e)
-        {
-            TextboxInput.Text += 7;
-            LoseFocus();
-        }
-
-        private void Button8_Click(object sender, EventArgs e)
-        {
-            TextboxInput.Text += 8;
-            LoseFocus();
-        }
-
-        private void Button9_Click(object sender, EventArgs e)
-        {
-            TextboxInput.Text += 9;
+            Button button = sender as Button;
+            TextboxInput.Text += button.Text;
             LoseFocus();
         }
 
         private void ButtonDecimal_Click(object sender, EventArgs e)
         {
-            TextboxInput.Text += ".";
-            LoseFocus();
+            if (!TextboxInput.Text.Contains('.'))
+            {
+                TextboxInput.Text += ".";
+            }
+            else
+                MessageBox.Show("Een getal kan geen 2 komma's bevatten");
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            TextboxFormule.Text += TextboxInput.Text;
-            TextboxInput.Clear();
-            TextboxInput.Text += "+";
-            LoseFocus();
+            if(!CheckIfSign(TextboxInput.Text, TextboxInput.Text.Length - 1))
+            {
+                TextboxFormule.Text += TextboxInput.Text;
+                TextboxInput.Clear();
+                TextboxInput.Text += "+";
+                LoseFocus();
+            }
+            else
+            {
+                MessageBox.Show("Hier kan geen + staan");
+            }
         }
 
         private void ButtonSubtract_Click(object sender, EventArgs e)
         {
-            if(TextboxInput.Text.Length == 1 && (TextboxInput.Text[0] == '+' || TextboxInput.Text[0] == '-' || TextboxInput.Text[0] == '*' || TextboxInput.Text[0] == '/'))
+            if(TextboxInput.Text.Length == 0 || (TextboxInput.Text.Length == 1 && CheckIfSign(TextboxInput.Text, 0) && !CheckIfSign(TextboxFormule.Text, TextboxFormule.Text.Length - 1)))
             {
                 TextboxInput.Text += "-";
             }
-            else
+            else if(TextboxInput.Text.Length < 2 || !CheckIfSign(TextboxInput.Text, 1))
             {
                 TextboxFormule.Text += TextboxInput.Text;
                 TextboxInput.Clear();
                 TextboxInput.Text += "-";
+            }
+            else
+            {
+                MessageBox.Show("Hier kan geen - staan");
             }
             LoseFocus();
         }
 
         private void ButtonMultiply_Click(object sender, EventArgs e)
         {
-            TextboxFormule.Text += TextboxInput.Text;
-            TextboxInput.Clear();
-            TextboxInput.Text += "*";
-            LoseFocus();
+            if (!CheckIfSign(TextboxInput.Text, TextboxInput.Text.Length - 1))
+            {
+                TextboxFormule.Text += TextboxInput.Text;
+                TextboxInput.Clear();
+                TextboxInput.Text += "*";
+                LoseFocus();
+            }
+            else
+            {
+                MessageBox.Show("Hier kan geen x staan");
+            }
         }
 
         private void ButtonDivide_Click(object sender, EventArgs e)
         {
-            TextboxFormule.Text += TextboxInput.Text;
-            TextboxInput.Clear();
-            TextboxInput.Text += "/";
-            LoseFocus();
+            if (!CheckIfSign(TextboxInput.Text, TextboxInput.Text.Length - 1))
+            {
+                TextboxFormule.Text += TextboxInput.Text;
+                TextboxInput.Clear();
+                TextboxInput.Text += "/";
+                LoseFocus();
+            }
+            else
+            {
+                MessageBox.Show("Hier kan geen / staan");
+            }
         }
 
         private void ButtonClear_Click(object sender, EventArgs e)
@@ -134,6 +127,48 @@ namespace CalculatorView
             TextboxInput.Clear();
             TextboxFormule.Clear();
             LoseFocus();
+        }
+
+        private void ButtonBackspace_Click(object sender, EventArgs e)
+        {
+            if(TextboxInput.Text.Length > 0)
+            TextboxInput.Text = TextboxInput.Text.Remove(TextboxInput.Text.Length - 1);
+        }
+
+        private void ButtonLeftBracket_Click(object sender, EventArgs e)
+        {
+            if(CheckIfSign(TextboxInput.Text,0))
+            {
+                TextboxFormule.Text += TextboxInput.Text;
+                TextboxInput.Clear();
+                TextboxFormule.Text += "(";
+                _aantalHaakjes++;
+            }
+            else
+            {
+                MessageBox.Show("Je kan geen haakjes plaatsen op deze plaats");
+            }
+        }
+
+        private void ButtonRightBracket_Click(object sender, EventArgs e)
+        {
+            bool sign = CheckIfSign(TextboxInput.Text,0);
+
+            if (_aantalHaakjes > 0 &&  !sign)
+            {
+                TextboxFormule.Text += TextboxInput.Text;
+                TextboxInput.Clear();
+                TextboxFormule.Text += ")";
+                _aantalHaakjes--;
+            }
+            else if (sign)
+            {
+                MessageBox.Show("Je kan geen haakjes plaatsen op deze plaats");
+            }
+            else
+            {
+                MessageBox.Show("Er zijn geen haakjes om te sluiten");
+            }
         }
     }
 }
