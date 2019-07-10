@@ -35,7 +35,7 @@
             this.ButtonRightBracket = new System.Windows.Forms.Button();
             this.Button0 = new System.Windows.Forms.Button();
             this.ButtonClear = new System.Windows.Forms.Button();
-            this.ButtonPower = new System.Windows.Forms.Button();
+            this.ButtonCalculate = new System.Windows.Forms.Button();
             this.ButtonBackspace = new System.Windows.Forms.Button();
             this.ButtonSubtract = new System.Windows.Forms.Button();
             this.Button7 = new System.Windows.Forms.Button();
@@ -65,11 +65,10 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Controls.Add(this.ButtonAdd, 3, 4);
             this.tableLayoutPanel1.Controls.Add(this.ButtonLeftBracket, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.ButtonDecimal, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.ButtonDecimal, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.ButtonRightBracket, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.Button0, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.ButtonClear, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.ButtonPower, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.ButtonBackspace, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.ButtonSubtract, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.Button7, 0, 1);
@@ -83,6 +82,7 @@
             this.tableLayoutPanel1.Controls.Add(this.Button4, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.Button6, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.Button5, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.ButtonCalculate, 2, 4);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(14, 151);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
@@ -130,7 +130,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonDecimal.BackColor = System.Drawing.Color.OldLace;
-            this.ButtonDecimal.Location = new System.Drawing.Point(238, 468);
+            this.ButtonDecimal.Location = new System.Drawing.Point(8, 468);
             this.ButtonDecimal.Margin = new System.Windows.Forms.Padding(8);
             this.ButtonDecimal.Name = "ButtonDecimal";
             this.ButtonDecimal.Size = new System.Drawing.Size(99, 99);
@@ -184,19 +184,20 @@
             this.ButtonClear.UseVisualStyleBackColor = false;
             this.ButtonClear.Click += new System.EventHandler(this.ButtonClear_Click);
             // 
-            // ButtonPower
+            // ButtonCalculate
             // 
-            this.ButtonPower.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ButtonCalculate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonPower.BackColor = System.Drawing.Color.OldLace;
-            this.ButtonPower.Location = new System.Drawing.Point(8, 468);
-            this.ButtonPower.Margin = new System.Windows.Forms.Padding(8);
-            this.ButtonPower.Name = "ButtonPower";
-            this.ButtonPower.Size = new System.Drawing.Size(99, 99);
-            this.ButtonPower.TabIndex = 18;
-            this.ButtonPower.Text = "x²";
-            this.ButtonPower.UseVisualStyleBackColor = false;
+            this.ButtonCalculate.BackColor = System.Drawing.Color.OldLace;
+            this.ButtonCalculate.Location = new System.Drawing.Point(238, 468);
+            this.ButtonCalculate.Margin = new System.Windows.Forms.Padding(8);
+            this.ButtonCalculate.Name = "ButtonCalculate";
+            this.ButtonCalculate.Size = new System.Drawing.Size(99, 99);
+            this.ButtonCalculate.TabIndex = 18;
+            this.ButtonCalculate.Text = "=";
+            this.ButtonCalculate.UseVisualStyleBackColor = false;
+            this.ButtonCalculate.Click += new System.EventHandler(this.Calculate);
             // 
             // ButtonBackspace
             // 
@@ -439,7 +440,7 @@
         private System.Windows.Forms.Button ButtonRightBracket;
         private System.Windows.Forms.Button Button0;
         private System.Windows.Forms.Button ButtonClear;
-        private System.Windows.Forms.Button ButtonPower;
+        private System.Windows.Forms.Button ButtonCalculate;
         private System.Windows.Forms.Button ButtonBackspace;
         private System.Windows.Forms.Button ButtonSubtract;
         private System.Windows.Forms.Button Button7;

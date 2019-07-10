@@ -259,5 +259,10 @@ namespace CalculatorView
                     break;
             }
         }
+
+        private void Calculate(object sender, EventArgs e)
+        {
+            Calculate();
+        }
     }
 }
