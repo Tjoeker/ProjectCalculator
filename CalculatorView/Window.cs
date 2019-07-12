@@ -24,7 +24,7 @@ namespace CalculatorView
 
             Calculator.Calculator calc = new Calculator.Calculator();
 
-            string solution = calc.Main(TextboxFormule.Text);
+            string solution = calc.Calculate(TextboxFormule.Text);
 
             TextboxFormule.Clear();
             TextboxInput.Text = solution;
@@ -229,6 +229,9 @@ namespace CalculatorView
                     Numeric_Button_Click(Button9, e);
                     break;
                 case '.':
+                    ButtonDecimal_Click(ButtonDecimal, e);
+                    break;
+                case ',':
                     ButtonDecimal_Click(ButtonDecimal, e);
                     break;
                 case '(':
