@@ -71,12 +71,6 @@ namespace Calculator
                
             }
 
-            //for(int i = 0; i < getallen.Length; i++)
-            //{
-            //    if (getallen[i].Contains(".") || getallen[i].Contains(","))
-            //        getallen[i] = Convert.ToString(Convert.ToDecimal(getallen[i], System.Globalization.CultureInfo.InvariantCulture));
-            //}
-
             return getallen;
         }
 
@@ -90,7 +84,7 @@ namespace Calculator
 
         private LevelEnum VolgordeBewerkingen(string[] getallen)
         {
-            LevelEnum level = LevelEnum.Som; //0 = + -;;  1 = * /;; 2 = ( )
+            LevelEnum level = LevelEnum.Som;
 
             for (int i = 0; i < getallen.Length; i++)
             {
@@ -111,7 +105,7 @@ namespace Calculator
         {
             if (getallen[1] == "+")
             {
-                nieuw[0] = Convert.ToString(Convert.ToDecimal(getallen[0]/*, System.Globalization.CultureInfo.InvariantCulture*/) + Convert.ToDecimal(getallen[2]/*, System.Globalization.CultureInfo.InvariantCulture*/));
+                nieuw[0] = Convert.ToString(Convert.ToDecimal(getallen[0]) + Convert.ToDecimal(getallen[2]));
 
                 for (int i = 3; i < getallen.Length; i++)
                 {
@@ -120,7 +114,7 @@ namespace Calculator
             }
             else if (getallen[1] == "-")
             {
-                nieuw[0] = Convert.ToString(Convert.ToDecimal(getallen[0]/*, System.Globalization.CultureInfo.InvariantCulture*/) - Convert.ToDecimal(getallen[2]/*, System.Globalization.CultureInfo.InvariantCulture*/));
+                nieuw[0] = Convert.ToString(Convert.ToDecimal(getallen[0]) - Convert.ToDecimal(getallen[2]));
 
                 for (int i = 3; i < getallen.Length; i++)
                 {
@@ -137,7 +131,7 @@ namespace Calculator
             {
                 if (getallen[i] == "*")
                 {
-                    getallen[i - 1] = Convert.ToString(Convert.ToDecimal(getallen[i - 1]/*, System.Globalization.CultureInfo.InvariantCulture*/) * Convert.ToDecimal(getallen[i + 1]/*, System.Globalization.CultureInfo.InvariantCulture*/));
+                    getallen[i - 1] = Convert.ToString(Convert.ToDecimal(getallen[i - 1]) * Convert.ToDecimal(getallen[i + 1]));
                     for (int j = 0; j < i; j++)
                     {
                         nieuw[j] = getallen[j];
@@ -156,7 +150,7 @@ namespace Calculator
                         nieuw[0] = "Divide by zero";
                         return nieuw;
                     }
-                    getallen[i - 1] = Convert.ToString(Convert.ToDecimal(getallen[i - 1]/*, System.Globalization.CultureInfo.InvariantCulture*/) / Convert.ToDecimal(getallen[i + 1]/*, System.Globalization.CultureInfo.InvariantCulture*/));
+                    getallen[i - 1] = Convert.ToString(Convert.ToDecimal(getallen[i - 1]) / Convert.ToDecimal(getallen[i + 1]));
                     for (int j = 0; j < i; j++)
                     {
                         nieuw[j] = getallen[j];
