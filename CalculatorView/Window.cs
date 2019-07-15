@@ -69,7 +69,7 @@ namespace CalculatorView
         {
             if (!TextboxInput.Text.Contains('.'))
             {
-                TextboxInput.Text += ".";
+                TextboxInput.Text += System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
             }
             else
                 MessageBox.Show("Een getal kan geen 2 komma's bevatten");
@@ -266,6 +266,7 @@ namespace CalculatorView
         private void Calculate(object sender, EventArgs e)
         {
             Calculate();
+            LoseFocus();
         }
     }
 }
