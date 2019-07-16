@@ -444,7 +444,7 @@
             this.ButtonHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonHistory.Location = new System.Drawing.Point(252, 12);
             this.ButtonHistory.Name = "ButtonHistory";
-            this.ButtonHistory.Size = new System.Drawing.Size(221, 47);
+            this.ButtonHistory.Size = new System.Drawing.Size(224, 47);
             this.ButtonHistory.TabIndex = 26;
             this.ButtonHistory.Text = "Geschiedenis";
             this.ButtonHistory.UseVisualStyleBackColor = true;

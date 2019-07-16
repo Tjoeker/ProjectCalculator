@@ -39,6 +39,7 @@
             this.ListboxHistory.Name = "ListboxHistory";
             this.ListboxHistory.Size = new System.Drawing.Size(775, 424);
             this.ListboxHistory.TabIndex = 0;
+            this.ListboxHistory.DoubleClick += new System.EventHandler(this.History_DoubleClick);
             // 
             // History
             // 

@@ -315,6 +315,17 @@ namespace CalculatorView
         {
             var context = new History(History);
                 context.Show();
+
+            context.OnSelectEvent += OnOkEvent;
+
+        }
+
+        private void OnOkEvent(object sender, string e)
+        {
+            TextboxInput.Text = e;
+            _firstValue = true;
+
+            LoseFocus();
         }
     }
 }
