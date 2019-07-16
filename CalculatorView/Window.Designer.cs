@@ -51,6 +51,7 @@
             this.ButtonCalculate = new System.Windows.Forms.Button();
             this.TextboxInput = new System.Windows.Forms.TextBox();
             this.TextboxFormule = new System.Windows.Forms.TextBox();
+            this.ButtonHistory = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -438,12 +439,24 @@
             this.TextboxFormule.Size = new System.Drawing.Size(460, 26);
             this.TextboxFormule.TabIndex = 25;
             // 
+            // ButtonHistory
+            // 
+            this.ButtonHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonHistory.Location = new System.Drawing.Point(252, 12);
+            this.ButtonHistory.Name = "ButtonHistory";
+            this.ButtonHistory.Size = new System.Drawing.Size(221, 47);
+            this.ButtonHistory.TabIndex = 26;
+            this.ButtonHistory.Text = "Geschiedenis";
+            this.ButtonHistory.UseVisualStyleBackColor = true;
+            this.ButtonHistory.Click += new System.EventHandler(this.History_Click);
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(488, 738);
+            this.Controls.Add(this.ButtonHistory);
             this.Controls.Add(this.TextboxFormule);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.TextboxInput);
@@ -481,5 +494,6 @@
         private System.Windows.Forms.Button Button5;
         private System.Windows.Forms.TextBox TextboxInput;
         private System.Windows.Forms.TextBox TextboxFormule;
+        private System.Windows.Forms.Button ButtonHistory;
     }
 }

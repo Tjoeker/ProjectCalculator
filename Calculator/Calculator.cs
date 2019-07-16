@@ -254,7 +254,7 @@ namespace Calculator
                 oplossing = oplossing.Substring(1);
             }
 
-            while(oplossing[oplossing.Length - 1] == '0' || oplossing[oplossing.Length - 1] == '.' || oplossing[oplossing.Length - 1] == ',')
+            while(( oplossing[oplossing.Length - 1] == '0' && (oplossing.Contains(".") || oplossing.Contains(",")) ) || oplossing[oplossing.Length - 1] == '.' || oplossing[oplossing.Length - 1] == ',')
             {
                 oplossing = oplossing.Substring(0, oplossing.Length - 1);
             }

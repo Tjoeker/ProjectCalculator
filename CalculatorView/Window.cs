@@ -13,7 +13,7 @@ namespace CalculatorView
 {
     public partial class Window : Form
     {
-        public List<Dictionary<string, string>> History;
+        public List<Dictionary<string, string>> History = new List<Dictionary<string, string>>();
 
         public Window()
         {
@@ -22,14 +22,20 @@ namespace CalculatorView
 
         private void Calculate()
         {
-            TextboxFormule.Text += TextboxInput.Text;
+            string formule = TextboxFormule.Text + TextboxInput.Text;
 
             Calculator.Calculator calc = new Calculator.Calculator();
 
-            string solution = calc.Calculate(TextboxFormule.Text);
+            string solution = calc.Calculate(formule);
+
 
             TextboxFormule.Clear();
             TextboxInput.Text = solution;
+
+            var FormuleSolution = new Dictionary<string, string>();
+            FormuleSolution.Add(formule, solution);
+
+            History.Add(FormuleSolution);
         }
 
         private int _aantalHaakjes = 0;
@@ -274,6 +280,12 @@ namespace CalculatorView
             }
             Calculate();
             LoseFocus();
+        }
+
+        private void History_Click(object sender, EventArgs e)
+        {
+            var context = new History(History);
+                context.Show();
         }
     }
 }
