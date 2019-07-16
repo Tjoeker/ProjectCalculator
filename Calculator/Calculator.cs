@@ -107,19 +107,23 @@ namespace Calculator
             {
                 nieuw[0] = Convert.ToString(Convert.ToDecimal(getallen[0]) + Convert.ToDecimal(getallen[2]));
 
-                for (int i = 3; i < getallen.Length; i++)
-                {
-                    nieuw[i - 2] = getallen[i];
-                }
+                nieuw = CopyLosSomOp(getallen, nieuw);
             }
             else if (getallen[1] == "-")
             {
                 nieuw[0] = Convert.ToString(Convert.ToDecimal(getallen[0]) - Convert.ToDecimal(getallen[2]));
 
-                for (int i = 3; i < getallen.Length; i++)
-                {
-                    nieuw[i - 2] = getallen[i];
-                }
+                nieuw = CopyLosSomOp(getallen, nieuw);
+            }
+
+            return nieuw;
+        }
+
+        string[] CopyLosSomOp(string[] getallen, string[] nieuw)
+        {
+            for (int i = 3; i < getallen.Length; i++)
+            {
+                nieuw[i - 2] = getallen[i];
             }
 
             return nieuw;
@@ -132,14 +136,9 @@ namespace Calculator
                 if (getallen[i] == "*")
                 {
                     getallen[i - 1] = Convert.ToString(Convert.ToDecimal(getallen[i - 1]) * Convert.ToDecimal(getallen[i + 1]));
-                    for (int j = 0; j < i; j++)
-                    {
-                        nieuw[j] = getallen[j];
-                    }
-                    for (int j = i; j < nieuw.Length; j++)
-                    {
-                        nieuw[j] = getallen[j + 2];
-                    }
+
+                    nieuw = CopyLosMaalOp(getallen, nieuw, i);
+
                     break;
                 }
                 else if (getallen[i] == "/")
@@ -151,16 +150,25 @@ namespace Calculator
                         return nieuw;
                     }
                     getallen[i - 1] = Convert.ToString(Convert.ToDecimal(getallen[i - 1]) / Convert.ToDecimal(getallen[i + 1]));
-                    for (int j = 0; j < i; j++)
-                    {
-                        nieuw[j] = getallen[j];
-                    }
-                    for (int j = i; j < nieuw.Length; j++)
-                    {
-                        nieuw[j] = getallen[j + 2];
-                    }
+
+                    nieuw = CopyLosMaalOp(getallen, nieuw, i);
+
                     break;
                 }
+            }
+
+            return nieuw;
+        }
+
+        string[] CopyLosMaalOp(string[] getallen, string[] nieuw, int i)
+        {
+            for (int j = 0; j < i; j++)
+            {
+                nieuw[j] = getallen[j];
+            }
+            for (int j = i; j < nieuw.Length; j++)
+            {
+                nieuw[j] = getallen[j + 2];
             }
 
             return nieuw;
