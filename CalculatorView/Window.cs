@@ -15,6 +15,8 @@ namespace CalculatorView
     {
         public List<Dictionary<string, string>> History = new List<Dictionary<string, string>>();
 
+        private bool _firstValue = true;
+
         public Window()
         {
             InitializeComponent();
@@ -36,6 +38,8 @@ namespace CalculatorView
             FormuleSolution.Add(formule, solution);
 
             History.Add(FormuleSolution);
+
+            _firstValue = true;
         }
 
         private int _aantalHaakjes = 0;
@@ -66,8 +70,20 @@ namespace CalculatorView
 
             return true;
         }
+
+        private void CheckIfFirstValue()
+        {
+            if (_firstValue)
+            {
+                TextboxInput.Clear();
+                TextboxFormule.Clear();
+                _firstValue = false;
+            }
+        }
         private void Numeric_Button_Click(object sender, EventArgs e)
         {
+            CheckIfFirstValue();
+
             Button button = sender as Button;
             TextboxInput.Text += button.Text;
             LoseFocus();
@@ -75,6 +91,7 @@ namespace CalculatorView
 
         private void ButtonDecimal_Click(object sender, EventArgs e)
         {
+            CheckIfFirstValue();
             if (!TextboxInput.Text.Contains('.'))
             {
                 TextboxInput.Text += System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
@@ -86,6 +103,8 @@ namespace CalculatorView
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
+            _firstValue = false;
+
             if(!CheckIfSign(TextboxInput.Text, TextboxInput.Text.Length - 1))
             {
                 TextboxFormule.Text += TextboxInput.Text;
@@ -101,6 +120,8 @@ namespace CalculatorView
 
         private void ButtonSubtract_Click(object sender, EventArgs e)
         {
+            _firstValue = false;
+
             if(TextboxInput.Text.Length == 0 || (TextboxInput.Text.Length == 1 && CheckIfSign(TextboxInput.Text, 0) && !CheckIfSign(TextboxFormule.Text, TextboxFormule.Text.Length - 1)))
             {
                 TextboxInput.Text += "-";
@@ -120,6 +141,8 @@ namespace CalculatorView
 
         private void ButtonMultiply_Click(object sender, EventArgs e)
         {
+            _firstValue = false;
+
             if (!CheckIfSign(TextboxInput.Text, TextboxInput.Text.Length - 1))
             {
                 TextboxFormule.Text += TextboxInput.Text;
@@ -135,6 +158,8 @@ namespace CalculatorView
 
         private void ButtonDivide_Click(object sender, EventArgs e)
         {
+            _firstValue = false;
+
             if (!CheckIfSign(TextboxInput.Text, TextboxInput.Text.Length - 1))
             {
                 TextboxFormule.Text += TextboxInput.Text;
@@ -150,6 +175,8 @@ namespace CalculatorView
 
         private void ButtonClear_Click(object sender, EventArgs e)
         {
+            _firstValue = true;
+
             TextboxInput.Clear();
             TextboxFormule.Clear();
             LoseFocus();
@@ -157,8 +184,10 @@ namespace CalculatorView
 
         private void ButtonBackspace_Click(object sender, EventArgs e)
         {
-            if(TextboxInput.Text.Length > 0)
-            TextboxInput.Text = TextboxInput.Text.Remove(TextboxInput.Text.Length - 1);
+            if (TextboxInput.Text.Length > 0)
+                TextboxInput.Text = TextboxInput.Text.Remove(TextboxInput.Text.Length - 1);
+            if(TextboxInput.Text.Length == 0 && TextboxFormule.Text.Length > 0)
+                _firstValue = true;
             LoseFocus();
         }
 
