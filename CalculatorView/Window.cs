@@ -13,6 +13,8 @@ namespace CalculatorView
 {
     public partial class Window : Form
     {
+        public List<Dictionary<string, string>> History;
+
         public Window()
         {
             InitializeComponent();
@@ -256,7 +258,7 @@ namespace CalculatorView
                     ButtonBackspace_Click(ButtonBackspace, e);
                     break;
                 case (char)13:
-                    Calculate();
+                    Calculate(ButtonCalculate, e);
                     break;
                 default:
                     break;
@@ -265,6 +267,11 @@ namespace CalculatorView
 
         private void Calculate(object sender, EventArgs e)
         {
+            if (TextboxInput.Text == "" && TextboxFormule.Text == "")
+            {
+                MessageBox.Show("De input kan niet leeg zijn.");
+                return;
+            }
             Calculate();
             LoseFocus();
         }

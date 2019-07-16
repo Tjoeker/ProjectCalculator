@@ -247,6 +247,21 @@ namespace Calculator
 
         }
 
+        string RemoveZeroes(string oplossing)
+        {
+            while(oplossing[0] == '0')
+            {
+                oplossing = oplossing.Substring(1);
+            }
+
+            while(oplossing[oplossing.Length - 1] == '0' || oplossing[oplossing.Length - 1] == '.' || oplossing[oplossing.Length - 1] == ',')
+            {
+                oplossing = oplossing.Substring(0, oplossing.Length - 1);
+            }
+
+            return oplossing;
+        }
+
         public string Calculate(string opdracht)
         {
             string[] getallen = ParseFunction(opdracht);
@@ -268,6 +283,9 @@ namespace Calculator
             catch
             {
             }
+
+            getallen[0] = RemoveZeroes(getallen[0]);
+            
             
             return getallen[0];
         }
